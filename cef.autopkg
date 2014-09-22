@@ -42,7 +42,13 @@ nuget {
 			SDK_CEF_X64 = cef_binary_3.1750.1738_windows64\;
 		}
 
-		include: ${SDK_CEF_X86}include\**\*;
+		// This is a stupid hack because CEF includes everything like:
+		// #include <include\cef___.h>
+		// See: http://coapp.org/reference/autopackage-ref.html
+		nested_include: {
+			#destination: ${d_include}\include;
+			${SDK_CEF_X86}include\**\*;
+		};
 
 		docs: {
 			${SDK_CEF_X86}LICENSE.txt,
