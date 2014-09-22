@@ -1,0 +1,75 @@
+nuget {
+	nuspec {
+		id: cef;
+		version: 3.1750.1738;
+		title: "Chromium Embedded Framework";
+		authors: {CEF Developers};
+		owners: {Cephal Systems, Pras Velagapudi};
+		licenseUrl: "http://opensource.org/licenses/BSD-3-Clause";
+		projectUrl: "https://code.google.com/p/chromiumembedded/";
+		iconUrl: "https://code.google.com/p/chromiumembedded/logo";
+		requireLicenseAcceptance: false;
+		summary: "The Chromium Embedded Framework (CEF) is a simple framework for embedding Chromium-based browsers in other applications.";
+
+		description: @"The Chromium Embedded Framework (CEF) is a 
+		simple framework for embedding Chromium-based browsers in
+		other applications. It is a BSD-licensed open source
+		project founded by Marshall Greenblatt in 2008 and based
+		on the Google Chromium project. Unlike the Chromium project
+		itself, which focuses mainly on Google Chrome application
+		development, CEF focuses on facilitating embedded browser
+		use cases in third-party applications.
+
+		CEF insulates the user from the underlying Chromium and Blink
+		code complexity by offering production-quality stable APIs,
+		release branches tracking specific Chromium releases, and
+		binary distributions. Most features in CEF have default
+		implementations that provide rich functionality while
+		requiring little or no integration work from the user.
+		
+		There are currently over 100 million installed instances of
+		CEF around the world embedded in products from a wide range
+		of companies and industries";
+
+		releaseNotes: "Release of CEF 3.1750.1738 binaries.";
+		copyright: "Copyright 2014";
+		tags: { CEF, LibCEF, native, nativepackage, CoApp };
+	};
+
+	files {
+		#defines {
+			SDK_CEF_X86 = cef_binary_3.1750.1738_windows32\;
+			SDK_CEF_X64 = cef_binary_3.1750.1738_windows64\;
+		}
+
+		include: ${SDK_CEF_X86}include\**\*;
+
+		docs: {
+			${SDK_CEF_X86}LICENSE.txt,
+		};
+
+		[x64,debug] {
+			lib: ${SDK_CEF_X64}Debug\*.lib;
+			bin: ${SDK_CEF_X64}Debug\*.dll;
+		}
+
+		[x64,release] {
+			lib: ${SDK_CEF_X64}Release\*.lib;
+			bin: ${SDK_CEF_X64}Release\*.dll;
+		}
+
+		[x86,debug] {
+			lib: ${SDK_CEF_X86}Debug\*.lib;
+			bin: ${SDK_CEF_X86}Debug\*.dll;
+		}
+
+		[x86,release] {
+			lib: ${SDK_CEF_X86}Release\*.lib;
+			bin: ${SDK_CEF_X86}Release\*.dll;
+		}
+	};
+
+	targets {
+		Defines += HAS_CEF;
+	};
+}
