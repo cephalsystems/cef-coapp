@@ -6,7 +6,7 @@ Visual Studio projects!
 ## Updating CEF version.
 First, download new binary packages from LibCEF website.
 ```bash
-$ vi luajit.autopkg  # change version and directories defines to match
+$ vi cef.autopkg  # change version and directories defines to match
 $ git commit -m "Updated libCEF version to vX.XXXX.XXXX"
 ```
 
